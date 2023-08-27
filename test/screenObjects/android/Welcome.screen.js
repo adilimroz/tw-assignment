@@ -5,7 +5,6 @@ class WelcomeScreen {
 
     async getStarted() {
         await this.getStartedButton.click();
-
     }
 }
 

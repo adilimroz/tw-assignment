@@ -1,3 +1,5 @@
+const testData = require('../../data/testdata.json')
+
 const WelcomeScreen = require('../../screenObjects/android/Welcome.screen')
 const WalletCreationScreen = require('../../screenObjects/android/WalletCreation.screen')
 const Passcode = require('../../screenObjects/android/Passcode.screen')
@@ -9,14 +11,17 @@ const WalletHome = require('../../screenObjects/android/WalletHome.screen')
 
 describe('End to end tests.', () => {
     it('End to end successfull user flow.', async() => {
+        const passcode = testData.passcode;
+        const walletName = testData.defaultWalletName;
+
         await WelcomeScreen.getStarted();
         await WalletCreationScreen.clickCreateNewWallet();
-        await Passcode.enterAndConfirmPasscode("012345", "012345");
+        await Passcode.enterAndConfirmPasscode(passcode, passcode);
         await SecretBackup.backUpManually();
         await Consent.giveConsent();
         await SecretPhrase.copyAndVerifySeed();
         await Stories.closeStories();
         await WalletHome.cancelPushNotification();
-        await expect(WalletHome.walletName).toHaveText("Main Wallet 1")
+        await expect(WalletHome.walletName).toHaveText(walletName);
     })
 })
