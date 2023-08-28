@@ -14,7 +14,7 @@ If you want to run the tests on browserstack
 * Browser stack access with username and access key.
 
 # Execution
-1. Clone the project.
+1. Clone the project. All the test spec files are located in `test/specs/android`
 2. Install all the dependencies - 
    `npm install`
 3. Run the android virtual device in your local machine with platform version 14.0 or change the platform version you are using [here](https://github.com/adilimroz/tw-assignment/blob/aa0ae3db31dd9195486c5fd11983cc6902d04c42/config/android-wdio.conf.js#L64)
