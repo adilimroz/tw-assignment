@@ -5,6 +5,10 @@ class Passcode {
         };
     }
 
+    get passcodeMismatchError() {
+        return $('//*[@text="Those passwords didn’t match!"]')
+    }
+
     async enterPasscode(str) {
         if (str === null || str === '') {
             throw new Error('Passcode cannot be null or empty');

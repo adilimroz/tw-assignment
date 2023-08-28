@@ -1,4 +1,5 @@
 {
     "passcode": "123456",
+    "mismatchedPasscode": "000000",
     "defaultWalletName": "Main Wallet 1"
 }

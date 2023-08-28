@@ -17,6 +17,10 @@ class SecretPhrase {
         return $('//*[@resource-id="com.wallet.crypto.trustapp:id/action_done"]');
     }
 
+    get invalidOrderError() {
+        return $('//*[@resource-id="com.wallet.crypto.trustapp:id/message"]');
+    }
+
     async copyAndVerifySeed() {
         const seedWords = [];
 
@@ -43,6 +47,27 @@ class SecretPhrase {
             await verifyElement.click();
         }
         await this.doneButton.click();
+    }
+
+    async copyAndInputIncorrectSeed() {
+        const seedWords = [];
+        const elements = await this.individualSeedWord; 
+
+        // Store the seed strings in order
+        for (const seedElement of elements) {
+            if(seedElement){
+                const seedWord = await seedElement.getText();
+                seedWords.push(seedWord);
+            } else {
+                console.error("Seed element is undefined");
+            }
+        }
+        await this.continueButton.click();
+        
+        // Take the last seed word from the phrase and click it first
+        const lastSeedWord = seedWords[seedWords.length - 1];
+        const lastSeedElement = await this.verifySeedWord(lastSeedWord)
+        await lastSeedElement.click();
     }
 }
 
